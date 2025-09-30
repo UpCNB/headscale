@@ -1,15 +1,13 @@
-name: 8 CNB integration
+name: 8 CNB sync
 on:
   # 定时保持 fork/main 与 CNB/upstream 新
   schedule: [{ cron: "*/30 * * * *" }]
-  # 推送 ai/* 分支时，把改动合入 CNB/main
-  push: { branches: ["ai/**"] }
   # 手动触发
   workflow_dispatch:
 
 jobs:
   call:
-    uses: weu8/workflows/.github/workflows/cnb-all.yml@main
+    uses: UpCNB/workflows/.github/workflows/cnb-sync.yml@main
     with:
       upstream_repo: https://github.com/juanfont/headscale
       cnb_repo_url:  https://cnb.cool/g.h/headscale
